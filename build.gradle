@@ -28,6 +28,9 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.9.6'
+
+    compile'org.apache.tomcat.embed:tomcat-embed-jasper'
+    compile'javax.servlet:jstl:1.2'
 }
 
 test {

@@ -4,6 +4,7 @@ import com.example.jparepositorytest.dao.ItemRepository;
 import com.example.jparepositorytest.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class ItemService {
     @Autowired
     ItemRepository itemRepository;
 
+    @Transactional
     public List<Item> get() {
         List<Item> items = itemRepository.findAll();
 
