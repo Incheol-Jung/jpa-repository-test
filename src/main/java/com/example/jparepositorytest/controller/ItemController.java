@@ -25,16 +25,22 @@ public class ItemController {
     public List<ItemResponse> get() {
         List<Item> items =  itemService.get();
         Item firstItem = items.get(0);
-//        firstItem.setItemName("contoller change");
 
         System.out.println("==============================================");
         System.out.println("firstItem.getPerson().getName() == " + firstItem.getPerson().getName());
 
-//        List<Item> items2 =  itemService.get();
+        //        firstItem.setItemName("contoller change");
+        //        List<Item> items2 =  itemService.get();
 
         return items.stream()
                     .map(item -> new ItemResponse(item.getId(), item.getItemName()))
                     .collect(Collectors.toList());
+    }
+
+    @GetMapping(value = "/test")
+    public List<Item> get2() {
+        List<Item> items =  itemService.get();
+        return items;
     }
 
 }

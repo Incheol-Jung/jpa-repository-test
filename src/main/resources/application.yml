@@ -11,7 +11,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
-    open-in-view: false
+    open-in-view: true
 
   mvc:
     view:
