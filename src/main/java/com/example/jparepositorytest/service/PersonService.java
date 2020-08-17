@@ -31,6 +31,7 @@ public class PersonService {
             Item item = new Item("item" + i);
             item.setPerson(person);
             items.add(item);
+//            itemRepository.save(item);
         }
         itemRepository.saveAll(items);
 

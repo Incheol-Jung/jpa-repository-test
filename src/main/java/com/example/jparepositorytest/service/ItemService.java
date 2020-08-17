@@ -13,7 +13,7 @@ public class ItemService {
     @Autowired
     ItemRepository itemRepository;
 
-    @Transactional
+//    @Transactional
     public List<Item> get() {
         List<Item> items = itemRepository.findAll();
 

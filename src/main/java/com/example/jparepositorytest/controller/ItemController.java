@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,29 +20,40 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/items", produces = "application/json")
 public class ItemController {
 
+    @PersistenceUnit
+    EntityManagerFactory entityManagerFactory;
+
     @Autowired
     ItemService itemService;
 
-    @GetMapping(value = "")
-    public List<ItemResponse> get() {
-        List<Item> items =  itemService.get();
-        Item firstItem = items.get(0);
-
-        System.out.println("==============================================");
-        System.out.println("firstItem.getPerson().getName() == " + firstItem.getPerson().getName());
-
-        //        firstItem.setItemName("contoller change");
-        //        List<Item> items2 =  itemService.get();
-
-        return items.stream()
-                    .map(item -> new ItemResponse(item.getId(), item.getItemName()))
-                    .collect(Collectors.toList());
-    }
+//    @GetMapping(value = "")
+//    public List<ItemResponse> get() {
+//        List<Item> items2ghh =  itemService.get();
+////        Item firstItem = items.get(0);
+////
+////        System.out.println("==============================================");
+////        System.out.println("firstItem.getPerson().getName() == " + firstItem.getPerson().getName());
+//
+//        //        firstItem.setItemName("contoller change");
+//        //        List<Item> items2 =  itemService.get();
+//
+//        return items2.stream()
+//                    .map(item -> new ItemResponse(item.getId(), item.getItemName()))
+//                    .collect(Collectors.toList());
+//    }
 
     @GetMapping(value = "/test")
+
+    @Transactional
     public List<Item> get2() {
         List<Item> items =  itemService.get();
-        return items;
+        for(Item item : items){
+            System.out.println(item.getPerson().getName());
+            System.out.println("isLoaded = " + entityManagerFactory.getPersistenceUnitUtil().isLoaded(item.getPerson()));
+        }
+
+        List<Item> items2 = itemService.get();
+        return items2;
     }
 
 }

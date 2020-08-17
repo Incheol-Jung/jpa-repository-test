@@ -24,9 +24,6 @@ public class ViewController {
         List<Item> items = itemService.get();
 
         System.out.println("==============================================");
-//        for(Item item : items){
-//            System.out.println(item.getPerson().getName());
-//        }
 
         mv.addObject("items", items);
         mv.setViewName("index");
